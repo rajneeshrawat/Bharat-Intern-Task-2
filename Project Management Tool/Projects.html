@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Project Management - Projects</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <header class="header">
+        <h1>Project Management</h1>
+    </header>
+
+    <nav class="nav">
+        <ul>
+            <li><a href="HomePage.html">Home</a></li>
+            <li class="active"><a href="Projects.html">Projects</a></li>
+            <li><a href="Tasks.html">Tasks</a></li>
+            <li><a href="Teams.html">Team</a></li>
+            <li><a href="Reports.html">Reports</a></li>
+        </ul>
+    </nav>
+
+    <section id="content-projects" class="content">
+        <h2>Manage Your Projects</h2>
+        <div class="project-form">
+            <h3>Add New Project</h3>
+            <form id="add-project-form">
+                <label for="project-title">Project Title:</label>
+                <input type="text" id="project-title" name="project-title" required>
+
+                <label for="project-description">Project Description:</label>
+                <textarea id="project-description" name="project-description" required></textarea>
+
+                <label for="project-deadline">Deadline:</label>
+                <input type="text" id="project-deadline" name="project-deadline" required>
+
+                <label for="project-status">Status:</label>
+                <select id="project-status" name="project-status" required>
+          <option value="Not started">Not started</option>
+          <option value="In progress">In progress</option>
+          <option value="Completed">Completed</option>
+        </select>
+
+                <input type="submit" value="Add Project">
+            </form>
+        </div>
+
+        <div class="project-list">
+            <h3>Existing Projects</h3>
+            <ul>
+                <!-- Project items will be dynamically added here -->
+            </ul>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Handle form submission
+        document.getElementById("add-project-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get form input values
+            var title = document.getElementById("project-title").value;
+            var description = document.getElementById("project-description").value;
+            var deadline = document.getElementById("project-deadline").value;
+
+            // Create new project element
+            var newProject = document.createElement("li");
+            newProject.innerHTML = `
+        <h3>${title}</h3>
+        <p>${description}</p>
+        <p><strong>Deadline:</strong> ${deadline}</p>
+      `;
+
+            // Add the new project to the project list
+            var projectList = document.querySelector(".project-list ul");
+            projectList.appendChild(newProject);
+
+            // Reset the form
+            document.getElementById("add-project-form").reset();
+        });
+    </script>
+</body>
+
+</html>
